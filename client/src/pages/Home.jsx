@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { QUERY_ALLTHREADS } from '../../utils/queries';
 
-const Plants = ({ authToken }) => {
+const Home = ({ authToken }) => {
   const { loading: threadLoading, error: threadError, data: threadData } = useQuery(QUERY_ALLTHREADS, {
     context: { headers: { Authorization: `Bearer ${authToken}` } }, 
   });
@@ -15,7 +15,7 @@ const Plants = ({ authToken }) => {
       {threadData.allThreads.map((thread) => ( 
         <div key={thread._id} className="card">
           <div className="card-body bg-light p-2">
-            <p>Name: {thread.name}</p>
+            <p>{thread.name}</p>
           </div>
         </div>
       ))}
@@ -23,4 +23,4 @@ const Plants = ({ authToken }) => {
   );
 };
 
-export default Plants;
+export default Home;
