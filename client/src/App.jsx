@@ -1,10 +1,15 @@
 import './App.css';
-import { Outlet } from 'react-router-dom';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
-/* import Header from './components/Header';
-import Navbar from './components/Navbar'; */
-import Auth from './utils/auth';
+import { Outlet } from 'react-router-dom';
+
+import Navbar from './components/navbar';
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -33,10 +38,11 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div>
-        {Auth.loggedIn()}
-        {/* {Auth.loggedIn() && <Header />} */}
-        <Outlet />
+      <div className="flex-column justify-flex-start min-100-vh">
+        <div className="container">
+          <Outlet />
+        </div>
+        <Navbar />
       </div>
     </ApolloProvider>
   );

@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_ADDTHREAD = gql`
+export const ADDTHREAD = gql`
 mutation AddThread($name: String!) {
   addThread(name: $name) {
     _id
@@ -8,7 +8,7 @@ mutation AddThread($name: String!) {
   }
 }`;
 
-export const QUERY_ADDCOMMENT = gql`
+export const ADDCOMMENT = gql`
 mutation AddComment($threadId: ID!, $author: String!, $text: String!) {
   addComment(threadId: $threadId, author: $author, text: $text) {
     _id
@@ -17,7 +17,7 @@ mutation AddComment($threadId: ID!, $author: String!, $text: String!) {
   }
 }`;
 
-export const QUERY_ADDREPLY = gql`
+export const ADDREPLY = gql`
 mutation AddReply($commentId: ID!, $replyAuthor: String!, $replyText: String!) {
   addReply(commentId: $commentId, replyAuthor: $replyAuthor, replyText: $replyText) {
     _id
@@ -26,7 +26,7 @@ mutation AddReply($commentId: ID!, $replyAuthor: String!, $replyText: String!) {
   }
 }`;
 
-export const QUERY_ADDUSER = gql`
+export const ADDUSER = gql`
 mutation Mutation($username: String!, $email: String!, $password: String!) {
   addUser(username: $username, email: $email, password: $password) {
     token
@@ -39,7 +39,7 @@ mutation Mutation($username: String!, $email: String!, $password: String!) {
   }
 }`;
 
-export const QUERY_LOGIN = gql`
+export const LOGIN = gql`
 mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
     token
