@@ -1,5 +1,5 @@
-const { User, Threads, Comments } = require('../models');
-const { signToken, AuthenticationError } = require('../utils/auth');
+const { User, Thread, Comment } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -10,13 +10,12 @@ const resolvers = {
       return await User.findOne({ username }).populate('threads');
     },
     allThreads: async () => {
-      return await Threads.find();
+      return await Thread.find();
     },
     allComments: async () => {
-      return await Comments.find();
+      return await Comment.find();
     },
     myThreads: async (parent, args, context) => {
-      if (context.user) {
       try {
         const user = await User.findById(context.user._id).populate('threads');
         if (!user) {
@@ -27,11 +26,8 @@ const resolvers = {
       } catch (error) {
         throw new Error(`Error fetching threads: ${error.message}`);
       }
-    }
-    throw AuthenticationError
     },
     myComments: async (parent, args, context) => {
-      if (context.user) {
       try {
         const user = await User.findById(context.user._id).populate('comments');
         if (!user) {
@@ -42,17 +38,15 @@ const resolvers = {
       } catch (error) {
         throw new Error(`Error fetching comments: ${error.message}`);
       }
-    }
-    throw AuthenticationError
     },
     me: async (parent, args, context) => {
-      if (context.user) {
-       let userinfo =  await User.findOne({ _id: context.user._id }).populate('threads');
-        console.log("This is the user info", userinfo );
-        return userinfo;
+      try {
+        const user = await User.findOne({ _id: context.user._id }).populate('threads');
+        console.log("This is the user info", user);
+        return user;
+      } catch (error) {
+        throw new Error(`Error fetching user info: ${error.message}`);
       }
-
-      throw new Error('You must be logged in to access this data.');;
     },
   },
   Mutation: {
@@ -77,57 +71,46 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-       addThread: async (parent, { name }, context) => {
-      if (context.user) {
-        const thread = await Threads.create({ name });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { threads: thread._id } }
-        );
-
-        return thread;
-      }
-      throw AuthenticationError;
+    addThread: async (parent, { name }) => {
+      const thread = await Thread.create({ name });
+      return thread;
     },
-    addComment: async (parent, { threadId, author, text}, context) => {
-      if (context.user) {
-        const updatedThread = await Threads.findOneAndUpdate(
-          { _id: threadId },
-          {
+    addComment: async (parent, { threadId, author, text }) => {
+      const updatedThread = await Thread.findOneAndUpdate(
+         { _id: threadId },
+         {
             $addToSet: {
-              comments: { author, text },
+               comments: { author, text },
             },
-          },
-          {
+         },
+         {
             new: true,
             runValidators: true,
-          }
-        );
-        return updatedThread;
+         }
+      );
+      return updatedThread;
+   },
+   addReply: async (parent, { commentId, replyAuthor, replyText }) => {
+    try {
+      const thread = await Thread.findOneAndUpdate(
+        { 'comments._id': commentId },
+        {
+          $push: { 'comments.$.replies': { replyAuthor, replyText } },
+        },
+        { new: true }
+      );
+
+      if (!thread) {
+        throw new Error('Thread not found');
       }
-      throw AuthenticationError;
-    },
-    addReply: async (parent, { commentId, replyAuthor, replyText}, context) => {
-      if (context.user) {
-        const updatedComment = await Comments.findOneAndUpdate(
-          { _id: commentId },
-          {
-            $addToSet: {
-              replies: { author: replyAuthor, text: replyText },
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-        return updatedComment;
-      }
-      throw AuthenticationError;
-    },
+      
+      const updatedComment = thread.comments.find(comment => comment._id.toString() === commentId);
+      return updatedComment;
+    } catch (error) {
+      throw new Error(`Error adding reply: ${error.message}`);
+    }
   },
+},
 };
 
 module.exports = resolvers;
-  

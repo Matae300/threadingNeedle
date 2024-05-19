@@ -9,9 +9,31 @@ const threadSchema = new Schema({
   },
   comments: [
     {
-      type: Schema.Types.ObjectId,
-      ref: 'Comment',
-    },
+      author: {
+        type: String,
+        required: true,
+        trim: true,
+      },
+      text: {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlength: 280,
+        trim: true,
+      },
+      replies: [
+        {
+          replyAuthor: {
+            type: String,
+            required: true,
+          },
+          replyText: {
+            type: String,
+            required: true,
+          },
+        }
+      ],
+    }
   ],
 });
 

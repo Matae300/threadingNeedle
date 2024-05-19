@@ -3,30 +3,27 @@ type User {
   _id: ID
   username: String
   email: String
-  password: String!
+  password: String
   threads: [Thread]!
-  comments: [Comment]!
 }
 
 type Thread {
-  _id: ID!
-  name: String!
+  _id: ID
+  name: String
   comments: [Comment]!
 }
 
 type Comment {
-  _id: ID!
-  author: String!
-  text: String!
-  createdAt: String!
+  _id: ID
+  author: String
+  text: String
   replies: [Reply]!
 }
 
 type Reply {
-  _id: ID!
-  replyAuthor: String!
-  replyText: String!
-  createdAt: String!
+  _id: ID
+  replyAuthor: String
+  replyText: String
 }
 
 type Auth {
