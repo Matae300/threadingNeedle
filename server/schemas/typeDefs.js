@@ -40,10 +40,8 @@ type Query {
   me: User
   allThreads: [Thread]
   allComments: [Comment]
-  allReplies: [Reply]
   myThreads: [Thread]
   myComments: [Comment]
-  myReplies: [Reply]
 }
 
 type Mutation {

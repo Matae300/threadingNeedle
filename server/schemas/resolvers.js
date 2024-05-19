@@ -3,6 +3,48 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
   Query: {
+    users: async () => {
+      return await User.find().populate('threads');
+    },
+    user: async (parent, { username }) => {
+      return await User.findOne({ username }).populate('threads');
+    },
+    allThreads: async () => {
+      return await Threads.find();
+    },
+    allComments: async () => {
+      return await Comments.find();
+    },
+    myThreads: async (parent, args, context) => {
+      if (context.user) {
+      try {
+        const user = await User.findById(context.user._id).populate('threads');
+        if (!user) {
+          throw new Error('User not found.');
+        }
+
+        return user.threads;
+      } catch (error) {
+        throw new Error(`Error fetching threads: ${error.message}`);
+      }
+    }
+    throw AuthenticationError
+    },
+    myComments: async (parent, args, context) => {
+      if (context.user) {
+      try {
+        const user = await User.findById(context.user._id).populate('comments');
+        if (!user) {
+          throw new Error('User not found.');
+        }
+
+        return user.comments;
+      } catch (error) {
+        throw new Error(`Error fetching comments: ${error.message}`);
+      }
+    }
+    throw AuthenticationError
+    },
     me: async (parent, args, context) => {
       if (context.user) {
        let userinfo =  await User.findOne({ _id: context.user._id }).populate('threads');
