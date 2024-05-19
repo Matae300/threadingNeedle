@@ -35,6 +35,55 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+       addThread: async (parent, { name }, context) => {
+      if (context.user) {
+        const thread = await Threads.create({ name });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { threads: thread._id } }
+        );
+
+        return thread;
+      }
+      throw AuthenticationError;
+    },
+    addComment: async (parent, { threadId, author, text}, context) => {
+      if (context.user) {
+        const updatedThread = await Threads.findOneAndUpdate(
+          { _id: threadId },
+          {
+            $addToSet: {
+              comments: { author, text },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        return updatedThread;
+      }
+      throw AuthenticationError;
+    },
+    addReply: async (parent, { commentId, replyAuthor, replyText}, context) => {
+      if (context.user) {
+        const updatedComment = await Comments.findOneAndUpdate(
+          { _id: commentId },
+          {
+            $addToSet: {
+              replies: { author: replyAuthor, text: replyText },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        return updatedComment;
+      }
+      throw AuthenticationError;
+    },
   },
 };
 
