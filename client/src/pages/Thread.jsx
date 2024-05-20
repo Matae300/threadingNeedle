@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import { QUERY_THREAD_BY_ID } from '../../utils/queries';
-import AddComment from '../components/addComment';
+import AddComment from '../components/addComment'; 
+import AddReply from '../components/addReply'; 
 
 import '../assets/Thread.css';
 
@@ -14,10 +15,27 @@ const ThreadDetails = ({ authToken }) => {
     context: { headers: { Authorization: `Bearer ${authToken}` } },
   });
 
+  const [showReplyForm, setShowReplyForm] = useState({});
+  const [showReplies, setShowReplies] = useState({});
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   const thread = data.ThreadById;
+
+  const handleReplyClick = (commentId) => {
+    setShowReplyForm((prevState) => ({
+      ...prevState,
+      [commentId]: !prevState[commentId],
+    }));
+  };
+
+  const handleRepliesClick = (commentId) => {
+    setShowReplies((prevState) => ({
+      ...prevState,
+      [commentId]: !prevState[commentId],
+    }));
+  };
 
   return (
     <div>
@@ -29,10 +47,24 @@ const ThreadDetails = ({ authToken }) => {
             <p><strong>{comment.author}</strong></p>
             <p>{comment.text}</p>
             <button>Like</button>
-            <button>Add Reply</button>
-            {comment.replies.length > 0 && (
+            <button onClick={() => handleReplyClick(comment._id)}>
+              {showReplyForm[comment._id] ? 'Cancel Reply' : 'Add Reply'}
+            </button>
+            {showReplyForm[comment._id] && (
+              <AddReply
+                commentId={comment._id}
+                threadId={thread._id}
+                onReplyAdded={() => setShowReplyForm((prevState) => ({
+                  ...prevState,
+                  [comment._id]: false,
+                }))}
+              />
+            )}
+            <button onClick={() => handleRepliesClick(comment._id)}>
+              {showReplies[comment._id] ? 'Hide Replies' : 'Show Replies'}
+            </button>
+            {showReplies[comment._id] && comment.replies.length > 0 && (
               <div className="mt-3 ml-3">
-                <h5>Replies:</h5>
                 {comment.replies.map((reply) => (
                   <div key={reply._id} className="card my-1">
                     <div className="card-body p-2">
