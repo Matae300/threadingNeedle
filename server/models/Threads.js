@@ -7,6 +7,14 @@ const threadSchema = new Schema({
     unique: true,
     trim: true,
   },
+  description: {
+    type: String,
+    required: false,
+    minlength: 1,
+    maxlength: 100,
+    unique: true,
+    trim: true,
+  },
   comments: [
     {
       author: {

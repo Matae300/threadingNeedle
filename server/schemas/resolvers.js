@@ -75,8 +75,8 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addThread: async (parent, { name }) => {
-      const thread = await Thread.create({ name });
+    addThread: async (parent, { name, description }) => {
+      const thread = await Thread.create({ name, description });
       return thread;
     },
     addComment: async (parent, { threadId, author, text }) => {

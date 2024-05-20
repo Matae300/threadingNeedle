@@ -1,0 +1,116 @@
+/* General styling for the thread container */
+.thread-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #000; /* Changed border color to black */
+  border-radius: 8px;
+  background-color: #fff; /* Changed background color to white */
+  color: #000; /* Changed text color to black */
+}
+
+/* Styling for individual comment cards */
+.comment-card {
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #000; /* Changed border color to black */
+  border-radius: 8px;
+  background-color: #fff; /* Changed background color to white */
+  color: #000; /* Changed text color to black */
+}
+
+/* Styling for nested comments */
+.nested-comment {
+  margin-left: 20px; /* Adjust margin to nest comments */
+}
+
+/* Styling for the comment author */
+.comment-author {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Styling for the comment text */
+.comment-text {
+  margin-bottom: 10px;
+}
+
+/* Styling for the reply button */
+.reply-button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #000; /* Changed background color to black */
+  color: #fff; /* Changed text color to white */
+  cursor: pointer;
+}
+
+/* Styling for the reply form container */
+.reply-form-container {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #000; /* Changed border color to black */
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  color: #000; /* Changed text color to black */
+}
+
+/* Styling for the reply input fields */
+.reply-input {
+  display: block;
+  width: calc(100% - 22px);
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Styling for the reply submit button */
+.reply-submit-button {
+  padding: 7px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #000; /* Changed background color to black */
+  color: #fff; /* Changed text color to white */
+  cursor: pointer;
+}
+
+/* Styling for individual reply cards */
+.reply-card {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #000; /* Changed border color to black */
+  border-radius: 8px;
+  background-color: #fff; /* Changed background color to white */
+  color: #000; /* Changed text color to black */
+}
+
+/* Styling for the reply author */
+.reply-author {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Styling for the reply text */
+.reply-text {
+  margin-bottom: 5px;
+}
+
+/* Success and error messages */
+.success-message, .error-message {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.success-message {
+  color: #fff; /* Changed text color to white */
+  background-color: #000; /* Changed background color to black */
+  border-color: #000; /* Changed border color to black */
+}
+
+.error-message {
+  color: #fff; /* Changed text color to white */
+  background-color: #ff0000; /* Changed background color to red */
+  border-color: #ff0000; /* Changed border color to red */
+}

@@ -5,6 +5,7 @@ query AllThreads {
   allThreads {
     _id
     name
+    description
     comments {
       _id
       author
@@ -24,6 +25,7 @@ query ThreadById($id: ID!) {
   ThreadById(_id: $id) {
     _id
     name
+    description
     comments {
       _id
       author

@@ -38,19 +38,20 @@ const ThreadDetails = ({ authToken }) => {
   };
 
   return (
-    <div>
+    <div className="thread-container">
       <h3>{thread.name}</h3>
+      <p>{thread.description}</p>
       <AddComment threadId={thread._id} />
       {thread.comments.map((comment) => (
-        <div key={comment._id} className="card my-2">
-          <div className="card-body bg-light p-2">
-            <p><strong>{comment.author}</strong></p>
-            <p>{comment.text}</p>
-            <button>Like</button>
-            <button onClick={() => handleReplyClick(comment._id)}>
-              {showReplyForm[comment._id] ? 'Cancel Reply' : 'Add Reply'}
-            </button>
-            {showReplyForm[comment._id] && (
+        <div key={comment._id} className="comment-card">
+          <div className="comment-author">{comment.author}</div>
+          <div className="comment-text">{comment.text}</div>
+          <button className="reply-button">Like</button>
+          <button className="reply-button" onClick={() => handleReplyClick(comment._id)}>
+            {showReplyForm[comment._id] ? 'Cancel Reply' : 'Add Reply'}
+          </button>
+          {showReplyForm[comment._id] && (
+            <div className="reply-form-container">
               <AddReply
                 commentId={comment._id}
                 threadId={thread._id}
@@ -59,22 +60,22 @@ const ThreadDetails = ({ authToken }) => {
                   [comment._id]: false,
                 }))}
               />
-            )}
-            <button onClick={() => handleRepliesClick(comment._id)}>
-              {showReplies[comment._id] ? 'Hide Replies' : 'Show Replies'}
-            </button>
-            {showReplies[comment._id] && comment.replies.length > 0 && (
-              <div className="mt-3 ml-3">
-                {comment.replies.map((reply) => (
-                  <div key={reply._id} className="card my-1">
-                    <div className="card-body p-2">
-                      <p><strong>{reply.replyAuthor}</strong>: {reply.replyText}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+            </div>
+          )}
+          <button className="reply-button" onClick={() => handleRepliesClick(comment._id)}>
+            {showReplies[comment._id] ? 'Hide Replies' : 'Show Replies'}
+          </button>
+          {showReplies[comment._id] && comment.replies.length > 0 && (
+            <div className="mt-3 ml-3">
+              <h5>Replies:</h5>
+              {comment.replies.map((reply) => (
+                <div key={reply._id} className="reply-card">
+                  <div className="reply-author">{reply.replyAuthor}</div>
+                  <div className="reply-text">{reply.replyText}</div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       ))}
     </div>

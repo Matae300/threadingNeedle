@@ -10,6 +10,7 @@ type User {
 type Thread {
   _id: ID
   name: String
+  description: String
   comments: [Comment]!
 }
 
@@ -45,7 +46,7 @@ type Query {
 type Mutation {
   addUser(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
-  addThread(name: String!): Thread
+  addThread(description: String!, name: String!): Thread
   addComment(threadId: ID!, author: String!, text: String!): Comment
   addReply(commentId: ID!, replyAuthor: String!, replyText: String!): Reply
 }

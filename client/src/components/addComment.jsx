@@ -7,7 +7,6 @@ const AddComment = ({ threadId }) => {
   const [author, setAuthor] = useState('');
   const [text, setText] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
 
   const [addComment] = useMutation(ADDCOMMENT, {
     refetchQueries: [
@@ -41,11 +40,9 @@ const AddComment = ({ threadId }) => {
       setAuthor('');
       setText('');
       setError('');
-      setSuccess(true);
     } catch (err) {
       console.error('Error adding comment:', err);
       setError('Failed to add comment. Please try again.');
-      setSuccess(false);
     }
   };
 
@@ -60,7 +57,6 @@ const AddComment = ({ threadId }) => {
 
   return (
     <div>
-      {success && <div className="success-message">Comment added successfully!</div>}
       <form onSubmit={handleFormSubmit}>
         {error && <div className="error-message">{error}</div>}
         <label htmlFor="author">Author:</label>
