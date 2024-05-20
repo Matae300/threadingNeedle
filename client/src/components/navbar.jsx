@@ -1,5 +1,6 @@
 
 import { Link, useLocation } from 'react-router-dom';
+import Auth from '../../utils/auth';
 
 function Navbar() {
   const currentPage = useLocation().pathname;
@@ -36,8 +37,8 @@ function Navbar() {
       </div>
 
       <div className="w3-cell nav-item w3-margin-left">
-        <button className="w3-btn w3-large btn-light">
-        Login
+        <button className="w3-btn w3-large btn-light" onClick={logout}>
+        Logout
         </button>
       </div>
 

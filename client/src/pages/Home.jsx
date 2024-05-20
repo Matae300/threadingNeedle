@@ -13,6 +13,7 @@ import '../assets/Home.css';
 
 const Home = ({ authToken }) => {
   const [showForm, setShowForm] = useState(false); 
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const { loading: threadLoading, error: threadError, data: threadData } = useQuery(QUERY_ALLTHREADS, {
     context: { headers: { Authorization: `Bearer ${authToken}` } }, 
@@ -25,31 +26,37 @@ const Home = ({ authToken }) => {
     setShowForm((prev) => !prev); 
   };
 
+  const toggleDropdown = () => {
+    setShowDropdown((prev) => !prev);
+  };
+
   return (
-    <div>
-      <div>
-        <Signup />
+    <div className="card-container">
+      <h3>Threads</h3>
+      
+      <div className="dropdown">
+        <button className="dropbtn" onClick={toggleDropdown}>Sign Up/Login</button>
+        {showDropdown && (
+          <div className="dropdown-content">
+            <Signup />
+            <Login />
+          </div>
+        )}
       </div>
-  
-      <div>
-        <Login />
-      </div>
-  
-      <div className="card-container">
-        <h3>Threads</h3>
-        {showForm && <AddThread />} 
-        <button onClick={toggleForm}>Add Thread +</button>
-        {threadData.allThreads.map((thread) => (
-          <Link to={`/thread/${thread._id}`} key={thread._id}>
-            <div className="card">
-              <div className="card-body bg-light p-2">
-                <p className="card-title">{thread.name}</p>
-                <p>{thread.description}</p>
-              </div>
+
+      <button onClick={toggleForm}>Add Thread +</button>
+      {showForm && <AddThread />} 
+
+      {threadData.allThreads.map((thread) => (
+        <Link to={`/thread/${thread._id}`} key={thread._id}>
+          <div className="card">
+            <div className="card-body bg-light p-2">
+              <p className="card-title">{thread.name}</p>
+              <p>{thread.description}</p>
             </div>
-          </Link>
-        ))}
-      </div>
+          </div>
+        </Link>
+      ))}
     </div>
   );
 };
