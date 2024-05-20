@@ -36,6 +36,7 @@ type Query {
   user(username: String!): User
   me: User
   allThreads: [Thread]
+  ThreadById(_id: ID!): Thread
   allComments: [Comment]
   myThreads: [Thread]
   myComments: [Comment]

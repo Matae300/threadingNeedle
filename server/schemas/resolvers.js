@@ -1,4 +1,4 @@
-const { User, Thread, Comment } = require('../models');
+const { User, Thread } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -11,6 +11,10 @@ const resolvers = {
     },
     allThreads: async () => {
       return await Thread.find();
+    },
+    ThreadById: async (parent, { _id }) => {  
+      console.log("This is the id", _id);
+      return await Thread.findOne({ _id }).populate('comments');  
     },
     allComments: async () => {
       return await Comment.find();
@@ -103,7 +107,7 @@ const resolvers = {
       if (!thread) {
         throw new Error('Thread not found');
       }
-      
+
       const updatedComment = thread.comments.find(comment => comment._id.toString() === commentId);
       return updatedComment;
     } catch (error) {

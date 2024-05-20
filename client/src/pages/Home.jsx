@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALLTHREADS } from '../../utils/queries';
+import '../assets/Home.css'
 
 const Home = ({ authToken }) => {
   const { loading: threadLoading, error: threadError, data: threadData } = useQuery(QUERY_ALLTHREADS, {
@@ -12,12 +14,14 @@ const Home = ({ authToken }) => {
   return (
     <div>
       <h3>Threads</h3>
-      {threadData.allThreads.map((thread) => ( 
-        <div key={thread._id} className="card">
-          <div className="card-body bg-light p-2">
-            <p>{thread.name}</p>
+      {threadData.allThreads.map((thread) => (
+        <Link to={`/thread/${thread._id}`} key={thread._id}>
+          <div className="card">
+            <div className="card-body bg-light p-2">
+              <p>{thread.name}</p>
+            </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

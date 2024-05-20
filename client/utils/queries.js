@@ -18,3 +18,22 @@ query AllThreads {
   }
 }
 `;
+
+export const QUERY_THREAD_BY_ID = gql`
+query ThreadById($id: ID!) {
+  ThreadById(_id: $id) {
+    _id
+    name
+    comments {
+      _id
+      author
+      text
+      replies {
+        _id
+        replyAuthor
+        replyText
+      }
+    }
+  }
+}
+`;

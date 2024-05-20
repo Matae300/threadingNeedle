@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         element: <Home />
       }, 
       {
-        path: '/threads',
+        path: '/thread/:id',
         element: <Thread />
       }, 
     ]
