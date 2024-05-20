@@ -6,6 +6,9 @@ import { QUERY_ALLTHREADS } from '../../utils/queries';
 import AddThread from '../components/addThread'; 
 import MyThreads from '../components/myThreads';
 
+import Signup from '../components/Signup';
+import Login from '../components/Login';
+
 import '../assets/Home.css';
 
 const Home = ({ authToken }) => {
@@ -23,20 +26,30 @@ const Home = ({ authToken }) => {
   };
 
   return (
-    <div className="card-container">
-      <h3>Threads</h3>
-      {showForm && <AddThread />} 
-      <button onClick={toggleForm}>Add Thread +</button>
-      {threadData.allThreads.map((thread) => (
-        <Link to={`/thread/${thread._id}`} key={thread._id}>
-          <div className="card">
-            <div className="card-body bg-light p-2">
-              <p className="card-title">{thread.name}</p>
-              <p>{thread.description}</p>
+    <div>
+      <div>
+        <Signup />
+      </div>
+  
+      <div>
+        <Login />
+      </div>
+  
+      <div className="card-container">
+        <h3>Threads</h3>
+        {showForm && <AddThread />} 
+        <button onClick={toggleForm}>Add Thread +</button>
+        {threadData.allThreads.map((thread) => (
+          <Link to={`/thread/${thread._id}`} key={thread._id}>
+            <div className="card">
+              <div className="card-body bg-light p-2">
+                <p className="card-title">{thread.name}</p>
+                <p>{thread.description}</p>
+              </div>
             </div>
-          </div>
-        </Link>
-      ))}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
