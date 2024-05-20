@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADDCOMMENT } from '../../utils/mutations';
 import { QUERY_THREAD_BY_ID, QUERY_ALLTHREADS } from '../../utils/queries';
+import Auth from '../../utils/auth';
 
 const AddComment = ({ threadId }) => {
   const [author, setAuthor] = useState('');
@@ -59,25 +60,29 @@ const AddComment = ({ threadId }) => {
     <div>
       <form onSubmit={handleFormSubmit}>
         {error && <div className="error-message">{error}</div>}
-        <label htmlFor="author">Author:</label>
-        <input
-          type="text"
-          id="author"
-          name="author"
-          placeholder="Enter your name"
-          value={author}
-          onChange={handleChange}
-        />
-        <label htmlFor="text">Comment:</label>
-        <input
-          type="text"
-          id="text"
-          name="text"
-          placeholder="Enter your comment"
-          value={text}
-          onChange={handleChange}
-        />
-        <button type="submit">Add Comment</button>
+        {Auth.loggedIn() && (
+          <>
+            <label htmlFor="author">Author:</label>
+            <input
+              type="text"
+              id="author"
+              name="author"
+              placeholder="Enter your name"
+              value={author}
+              onChange={handleChange}
+            />
+            <label htmlFor="text">Comment:</label>
+            <input
+              type="text"
+              id="text"
+              name="text"
+              placeholder="Enter your comment"
+              value={text}
+              onChange={handleChange}
+            />
+            <button type="submit">Add Comment</button>
+          </>
+        )}
       </form>
     </div>
   );

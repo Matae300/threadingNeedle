@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADDTHREAD } from '../../utils/mutations';
 import { QUERY_THREAD_BY_ID, QUERY_ALLTHREADS } from '../../utils/queries';
+import Auth from '../../utils/auth';
 
 const AddThread = () => {
   const [name, setName] = useState('');
@@ -58,25 +59,31 @@ const AddThread = () => {
       {success && <div className="success-message">Thread added successfully!</div>}
       <form onSubmit={handleFormSubmit}>
         {error && <div className="error-message">{error}</div>}
-        <label htmlFor="name">name:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Enter name"
-          value={name}
-          onChange={handleChange}
-        />
-        <label htmlFor="description">description:</label>
-        <input
-          type="text"
-          id="description"
-          name="description"
-          placeholder="Enter description..."
-          value={description}
-          onChange={handleChange}
-        />
-        <button type="submit">Add Thread</button>
+        {Auth.loggedIn() ? (
+          <>
+            <label htmlFor="name">name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter name"
+              value={name}
+              onChange={handleChange}
+            />
+            <label htmlFor="description">description:</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              placeholder="Enter description..."
+              value={description}
+              onChange={handleChange}
+            />
+            <button type="submit">Add Thread</button>
+          </>
+        ) : (
+          <p>You need to be logged in to add a note. Please log in or sign up.</p>
+        )}
       </form>
     </div>
   );

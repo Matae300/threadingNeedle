@@ -75,46 +75,52 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addThread: async (parent, { name, description }) => {
-      const thread = await Thread.create({ name, description });
-      return thread;
+    addThread: async (parent, { name, description }, context) => {
+      if (context.user) {
+        const thread = await Thread.create({ name, description });
+        return thread;
+      }
+      throw new Error('You must be logged in to add a thread.');
     },
-    addComment: async (parent, { threadId, author, text }) => {
-      const updatedThread = await Thread.findOneAndUpdate(
-         { _id: threadId },
-         {
+    addComment: async (parent, { threadId, author, text }, context) => {
+      if (context.user) {
+        const updatedThread = await Thread.findOneAndUpdate(
+          { _id: threadId },
+          {
             $addToSet: {
-               comments: { author, text },
+              comments: { author, text },
             },
-         },
-         {
+          },
+          {
             new: true,
             runValidators: true,
-         }
-      );
-      return updatedThread;
-   },
-   addReply: async (parent, { commentId, replyAuthor, replyText }) => {
-    try {
-      const thread = await Thread.findOneAndUpdate(
-        { 'comments._id': commentId },
-        {
-          $push: { 'comments.$.replies': { replyAuthor, replyText } },
-        },
-        { new: true }
-      );
-
-      if (!thread) {
-        throw new Error('Thread not found');
+          }
+        );
+        return updatedThread;
       }
+      throw new Error('You must be logged in to add a comment.');
+    },
+    addReply: async (parent, { commentId, replyAuthor, replyText }, context) => {
+      if (context.user) {
+        const thread = await Thread.findOneAndUpdate(
+          { 'comments._id': commentId },
+          {
+            $push: { 'comments.$.replies': { replyAuthor, replyText } },
+          },
+          { new: true }
+        );
 
-      const updatedComment = thread.comments.find(comment => comment._id.toString() === commentId);
-      return updatedComment;
-    } catch (error) {
-      throw new Error(`Error adding reply: ${error.message}`);
-    }
+        if (!thread) {
+          throw new Error('Thread not found');
+        }
+
+        const updatedComment = thread.comments.find(comment => comment._id.toString() === commentId);
+        return updatedComment;
+      } else {
+        throw new Error('You must be logged in to add a reply.');
+      }
+    },
   },
-},
 };
 
 module.exports = resolvers;

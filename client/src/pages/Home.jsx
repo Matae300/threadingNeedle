@@ -37,7 +37,6 @@ const Home = ({ authToken }) => {
           </div>
         </Link>
       ))}
-      <MyThreads/>
     </div>
   );
 };
