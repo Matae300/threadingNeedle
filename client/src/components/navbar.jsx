@@ -22,7 +22,7 @@ function Navbar() {
         <Link
           to="/"
           className={currentPage === '/' ? 'nav-link active' : 'nav-link'}>
-          <p className="w3-btn w3-large btn-light">Main</p>
+          <p className="w3-btn w3-large btn-light">Home</p>
         </Link>
       </div>
 
@@ -32,16 +32,6 @@ function Navbar() {
           to="/profile"
           className={currentPage === '/profile' ? 'nav-link active' : 'nav-link'} >
         <p className="w3-btn w3-large btn-light">Profile</p>
-        </Link>
-      </div>
-
-      
-      <div className="w3-cell nav-item">
-        {/* <!--Replace '/' with route to the task list and calendar--> */}
-        <Link
-          to="/threads"
-          className={currentPage === '/threads' ? 'nav-link active' : 'nav-link'} >
-        <p className="w3-btn w3-large btn-light">My Threads</p>
         </Link>
       </div>
 

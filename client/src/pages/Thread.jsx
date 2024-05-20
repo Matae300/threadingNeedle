@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import { QUERY_THREAD_BY_ID } from '../../utils/queries';
+
 import AddComment from '../components/addComment'; 
 import AddReply from '../components/addReply'; 
 

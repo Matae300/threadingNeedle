@@ -1,5 +1,30 @@
 import { gql } from '@apollo/client';
 
+export const QUERY_ME = gql`
+query Me {
+  me {
+    _id
+    username
+    email
+    password
+    threads {
+      _id
+      name
+      description
+      comments {
+        _id
+        author
+        text
+        replies {
+          _id
+          replyAuthor
+          replyText
+        }
+      }
+    }
+  }
+}`;
+
 export const QUERY_ALLTHREADS = gql`
 query AllThreads {
   allThreads {

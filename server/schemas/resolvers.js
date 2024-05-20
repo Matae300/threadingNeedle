@@ -44,13 +44,13 @@ const resolvers = {
       }
     },
     me: async (parent, args, context) => {
-      try {
-        const user = await User.findOne({ _id: context.user._id }).populate('threads');
-        console.log("This is the user info", user);
-        return user;
-      } catch (error) {
-        throw new Error(`Error fetching user info: ${error.message}`);
+      if (context.user) {
+       let userinfo =  await User.findOne({ _id: context.user._id }).populate('threads');
+        console.log("This is the user info", userinfo );
+        return userinfo;
       }
+
+      throw new Error('You must be logged in to access this data.');;
     },
   },
   Mutation: {
