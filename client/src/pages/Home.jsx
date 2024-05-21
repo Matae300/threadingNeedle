@@ -26,23 +26,10 @@ const Home = ({ authToken }) => {
     setShowForm((prev) => !prev); 
   };
 
-  const toggleDropdown = () => {
-    setShowDropdown((prev) => !prev);
-  };
-
   return (
     <div className="card-container">
       <h3>Threads</h3>
       
-      <div className="dropdown">
-        <button className="dropbtn" onClick={toggleDropdown}>Sign Up/Login</button>
-        {showDropdown && (
-          <div className="dropdown-content">
-            <Signup />
-            <Login />
-          </div>
-        )}
-      </div>
 
       <button onClick={toggleForm}>Add Thread +</button>
       {showForm && <AddThread />} 

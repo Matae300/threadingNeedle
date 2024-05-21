@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import Signup from './Signup';
 import Login from './Login';
+import Auth from '../../utils/auth';
+
 import '../assets/navBar.css';
 
 const Navbar = () => {
@@ -10,6 +12,12 @@ const Navbar = () => {
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
+  };
+
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+    window.location.href = '/';
   };
 
   return (
@@ -30,8 +38,8 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <div className="nav-links" onClick={toggleDropdown}>
-              Account
+            <div className="nav-links dropdown-toggle" onClick={toggleDropdown}>
+              Signup/Login
             </div>
             {isDropdownOpen && (
               <div className="dropdown-menu">
@@ -40,6 +48,13 @@ const Navbar = () => {
               </div>
             )}
           </li>
+          {Auth.loggedIn() && (
+            <li className="nav-item">
+              <button className="nav-links btn-light" onClick={logout}>
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </nav>

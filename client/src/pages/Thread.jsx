@@ -5,7 +5,6 @@ import { useQuery } from '@apollo/client';
 import { QUERY_THREAD_BY_ID } from '../../utils/queries';
 
 import AddComment from '../components/addComment'; 
-import MyThreads from '../components/myThreads';
 import AddReply from '../components/addReply'; 
 
 import '../assets/Thread.css';
