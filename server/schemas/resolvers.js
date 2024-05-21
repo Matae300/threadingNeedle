@@ -49,8 +49,6 @@ const resolvers = {
         console.log("This is the user info", userinfo );
         return userinfo;
       }
-
-      throw new Error('You must be logged in to access this data.');;
     },
   },
   Mutation: {
@@ -78,6 +76,12 @@ const resolvers = {
     addThread: async (parent, { name, description }, context) => {
       if (context.user) {
         const thread = await Thread.create({ name, description });
+        
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { threads: thread._id } }
+        );
+
         return thread;
       }
       throw new Error('You must be logged in to add a thread.');

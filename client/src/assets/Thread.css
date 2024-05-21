@@ -2,10 +2,8 @@
 .thread-container {
   margin: 20px;
   padding: 20px;
-  border: 1px solid #000; /* Changed border color to black */
-  border-radius: 8px;
-  background-color: #fff; /* Changed background color to white */
-  color: #000; /* Changed text color to black */
+  background-color: #111; /* Changed background color to white */
+  color: white; /* Changed text color to black */
 }
 
 /* Styling for individual comment cards */
@@ -14,8 +12,8 @@
   padding: 15px;
   border: 1px solid #000; /* Changed border color to black */
   border-radius: 8px;
-  background-color: #fff; /* Changed background color to white */
-  color: #000; /* Changed text color to black */
+  background-color: #111; /* Changed background color to white */
+  color: white; /* Changed text color to black */
 }
 
 /* Styling for nested comments */
@@ -40,7 +38,7 @@
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
-  background-color: #000; /* Changed background color to black */
+  background-color: #111; /* Changed background color to black */
   color: #fff; /* Changed text color to white */
   cursor: pointer;
 }
@@ -49,10 +47,9 @@
 .reply-form-container {
   margin-top: 10px;
   padding: 10px;
-  border: 1px solid #000; /* Changed border color to black */
   border-radius: 8px;
-  background-color: #f1f1f1;
-  color: #000; /* Changed text color to black */
+  background-color: #111;
+  color: white; /* Changed text color to black */
 }
 
 /* Styling for the reply input fields */
@@ -81,8 +78,8 @@
   padding: 10px;
   border: 1px solid #000; /* Changed border color to black */
   border-radius: 8px;
-  background-color: #fff; /* Changed background color to white */
-  color: #000; /* Changed text color to black */
+  background-color: #111; /* Changed background color to white */
+  color: white; /* Changed text color to black */
 }
 
 /* Styling for the reply author */
