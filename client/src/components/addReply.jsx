@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADDREPLY } from '../../utils/mutations';
-import { QUERY_THREAD_BY_ID, QUERY_ALLTHREADS } from '../../utils/queries';
+import { QUERY_THREAD_BY_ID, QUERY_ALLTHREADS, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 
 const AddReply = ({ commentId, threadId, onReplyAdded }) => {
-  const [replyAuthor, setReplyAuthor] = useState('');
   const [replyText, setReplyText] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+
+  const { data: userData } = useQuery(QUERY_ME);
 
   const [addReply] = useMutation(ADDREPLY, {
     refetchQueries: [
@@ -22,10 +23,6 @@ const AddReply = ({ commentId, threadId, onReplyAdded }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if (!replyAuthor.trim()) {
-      setError('Please enter your name.');
-      return;
-    }
     if (!replyText.trim()) {
       setError('Please enter a reply.');
       return;
@@ -35,16 +32,15 @@ const AddReply = ({ commentId, threadId, onReplyAdded }) => {
       await addReply({
         variables: {
           commentId,
-          replyAuthor,
+          replyAuthor: userData?.me?.username,
           replyText,
         },
       });
 
-      setReplyAuthor('');
       setReplyText('');
       setError('');
       setSuccess(true);
-      onReplyAdded(); // Call the callback to hide the form
+      onReplyAdded(); 
     } catch (err) {
       console.error('Error adding reply:', err);
       setError('Failed to add reply. Please try again.');
@@ -54,9 +50,7 @@ const AddReply = ({ commentId, threadId, onReplyAdded }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === 'replyAuthor') {
-      setReplyAuthor(value);
-    } else if (name === 'replyText') {
+    if (name === 'replyText') {
       setReplyText(value);
     }
   };
@@ -68,16 +62,6 @@ const AddReply = ({ commentId, threadId, onReplyAdded }) => {
         {error && <div className="error-message">{error}</div>}
         {Auth.loggedIn() ? (
           <div>
-            <label htmlFor="replyAuthor">Author:</label>
-            <input
-              type="text"
-              id="replyAuthor"
-              name="replyAuthor"
-              placeholder="Enter your name"
-              value={replyAuthor}
-              onChange={handleChange}
-            />
-            <label htmlFor="replyText">Reply:</label>
             <input
               type="text"
               id="replyText"
@@ -85,7 +69,7 @@ const AddReply = ({ commentId, threadId, onReplyAdded }) => {
               placeholder="Enter your reply"
               value={replyText}
               onChange={handleChange}
-            />
+            /> 
             <button type="submit">Add Reply</button>
           </div>
          ) : (

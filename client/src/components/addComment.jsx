@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADDCOMMENT } from '../../utils/mutations';
-import { QUERY_THREAD_BY_ID, QUERY_ALLTHREADS } from '../../utils/queries';
+import { QUERY_THREAD_BY_ID, QUERY_ALLTHREADS, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const AddComment = ({ threadId }) => {
-  const [author, setAuthor] = useState('');
   const [text, setText] = useState('');
   const [error, setError] = useState('');
+
+  const { data: userData } = useQuery(QUERY_ME);
 
   const [addComment] = useMutation(ADDCOMMENT, {
     refetchQueries: [
@@ -20,12 +21,8 @@ const AddComment = ({ threadId }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if (!author.trim()) {
-      setError('Please enter your name.');
-      return;
-    }
     if (!text.trim()) {
-      setError('Please enter a comment.');
+      setError('The field is required and cannot be empty');
       return;
     }
 
@@ -33,12 +30,11 @@ const AddComment = ({ threadId }) => {
       await addComment({
         variables: {
           threadId,
-          author,
+          author: userData?.me?.username,
           text,
         },
       });
 
-      setAuthor('');
       setText('');
       setError('');
     } catch (err) {
@@ -49,12 +45,10 @@ const AddComment = ({ threadId }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === 'author') {
-      setAuthor(value);
-    } else if (name === 'text') {
-      setText(value);
-    }
-  };
+    if (name === 'text') {
+        setText(value);
+      }
+    };
 
   return (
     <div>

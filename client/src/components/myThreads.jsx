@@ -46,7 +46,7 @@ const MyThreads = () => {
             threads.map((thread) => (
               <Link to={`/thread/${thread._id}`} key={thread._id}>
                 <div className="card">
-                  <div className="card-body bg-light p-2">
+                  <div className="mythread">
                     <p className="card-title">{thread.name}</p>
                   </div>
                 </div>
