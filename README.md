@@ -2,7 +2,8 @@
 
 Threading Needle is a Reddit-inspired platform built with modern web technologies for engaging discussions, content sharing, and community interactions.
 
-![screenshot](./client//src/assets/images/screenshot.jpeg)
+![screenshot](./client//src/assets/images/screenshot1.jpeg)
+![screenshot](./client//src/assets/images/screenshot2.jpeg)
 
 ## Features
 JWT Authentication: Secure user authentication using JSON Web Tokens.
