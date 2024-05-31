@@ -1,4 +1,4 @@
-form {
+.addThread-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +11,7 @@ form {
   border: 1px solid #cccccc4a;
 }
 
-label {
+.addThread-label {
   margin-bottom: 10px;
   font-weight: bold;
   font-size: 14px;
@@ -19,7 +19,7 @@ label {
   align-self: flex-start;
 }
 
-input {
+.addThread-input {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
@@ -30,8 +30,8 @@ input {
   background-color: #333;
 }
 
-input,
-textarea {
+.addThread-input,
+.addThread-textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
@@ -42,12 +42,12 @@ textarea {
   background-color: #333;
 }
 
-textarea {
+.addThread-textarea {
   height: 150px; 
   resize: vertical; 
 }
 
-button {
+.addThread-button {
   padding: 10px 15px;
   background-color: #6e788032;
   color: #ffffff;
@@ -57,11 +57,11 @@ button {
   font-size: 14px;
 }
 
-button:hover {
+.addThread-button:hover {
   background-color: #005999ac;
 }
 
-.success-message, .error-message {
+.success-message, .addThread .error-message {
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 4px;

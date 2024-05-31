@@ -59,12 +59,12 @@ const AddThread = () => {
   return (
     <div>
       {success && <div className="success-message">Thread added successfully!</div>}
-      <form onSubmit={handleFormSubmit}>
+      <form className='addThread-form' onSubmit={handleFormSubmit}>
         {error && <div className="error-message">{error}</div>}
         {Auth.loggedIn() ? (
           <>
-            <label htmlFor="name">name:</label>
-            <input
+            <label className='addThread-label' htmlFor="name">name:</label>
+            <input className='addThread-input'
               type="text"
               id="name"
               name="name"
@@ -72,8 +72,8 @@ const AddThread = () => {
               value={name}
               onChange={handleChange}
             />
-            <label htmlFor="description">description:</label>
-            <textarea
+            <label className='addThread-label' htmlFor="description">description:</label>
+            <textarea className='addThread-textarea'
               type="text"
               id="description"
               name="description"
@@ -81,7 +81,7 @@ const AddThread = () => {
               value={description}
               onChange={handleChange}
             />
-            <button type="submit">Submit</button>
+            <button className='addThread-button' type="submit">Submit</button>
           </>
         ) : (
           <p>You need to be logged in to add a note. Please log in or sign up.</p>
