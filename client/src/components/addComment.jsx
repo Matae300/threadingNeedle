@@ -56,7 +56,7 @@ const AddComment = ({ threadId }) => {
         {error && <div className="error-message">{error}</div>}
         {Auth.loggedIn() && (
           <>
-            <input
+            <input className='add-input'
               type="text"
               id="text"
               name="text"
@@ -64,7 +64,7 @@ const AddComment = ({ threadId }) => {
               value={text}
               onChange={handleChange}
             />
-            <button type="submit">Comment</button>
+            <button className='add-button'type="submit">Comment</button>
           </>
         )}
       </form>

@@ -66,3 +66,43 @@
 .reply-text {
   margin-top: 5px;
 }
+
+.add-input {
+  flex: 1; /* Take up remaining space */
+  min-width: 60%; /* Set maximum width for input */
+  padding: 10px;
+  margin-right: 2px;
+  margin-left: 16%;
+  border: 1px solid #333;
+  border-radius: 4px;
+  font-size: 14px;
+  color: white;
+  background-color: #333;
+}
+
+.reply-input {
+  flex: 1; /* Take up remaining space */
+  min-width: 300px; /* Set maximum width for input */
+  padding: 10px;
+  margin-top: 20px;
+  margin-right: 3px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  font-size: 14px;
+  color: white;
+  background-color: #333;
+}
+
+.add-button {
+  padding: 10px 15px;
+  background-color: #6e788032;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.add-button:hover {
+  background-color: #ced3d740;
+}

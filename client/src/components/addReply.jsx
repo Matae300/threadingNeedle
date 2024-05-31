@@ -62,7 +62,7 @@ const AddReply = ({ commentId, threadId, onReplyAdded }) => {
         {error && <div className="error-message">{error}</div>}
         {Auth.loggedIn() ? (
           <div>
-            <input
+            <input className='reply-input'
               type="text"
               id="replyText"
               name="replyText"
@@ -70,7 +70,7 @@ const AddReply = ({ commentId, threadId, onReplyAdded }) => {
               value={replyText}
               onChange={handleChange}
             /> 
-            <button type="submit">Add Reply</button>
+            <button className='add-button' type="submit">Add Reply</button>
           </div>
          ) : (
           <p>You need to be logged in to add a note. Please log in or sign up.</p>

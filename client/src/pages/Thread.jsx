@@ -42,7 +42,6 @@ const ThreadDetails = ({ authToken }) => {
     <div className="thread-container">
       <h2 className='threadname'>{thread.name}</h2>
       <p className='threadname'>{thread.description}</p>
-      <AddComment threadId={thread._id} />
       {thread.comments.map((comment) => (
         <div key={comment._id} className="comment-card">
           <div className="comment-author">{comment.author}</div>
@@ -51,6 +50,15 @@ const ThreadDetails = ({ authToken }) => {
           <button className="reply-button" onClick={() => handleReplyClick(comment._id)}>
             {showReplyForm[comment._id] ? 'Cancel Reply' : 'Add Reply'}
           </button>
+          {showReplies[comment._id] ? (
+            <button className="reply-button" onClick={() => handleRepliesClick(comment._id)}>
+              Hide Replies
+            </button>
+          ) : (
+            <button className="reply-button" onClick={() => handleRepliesClick(comment._id)}>
+              Show Replies
+            </button>
+          )}
           {showReplyForm[comment._id] && (
             <div className="reply-form-container">
               <AddReply
@@ -63,9 +71,6 @@ const ThreadDetails = ({ authToken }) => {
               />
             </div>
           )}
-          <button className="reply-button" onClick={() => handleRepliesClick(comment._id)}>
-            {showReplies[comment._id] ? 'Hide Replies' : 'Show Replies'}
-          </button>
           {showReplies[comment._id] && comment.replies.length > 0 && (
             <div className="mt-3 ml-3">
               <h4>Replies:</h4>
