@@ -1,15 +1,18 @@
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/client';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { QUERY_ME } from '../../utils/queries';
 
+import AddThread from './addThread';
 import Auth from '../../utils/auth';
 
 import '../assets/myThread.css';
 
 const MyThreads = () => {
+  const [showForm, setShowForm] = useState(false);
+
   const authToken = Auth.getToken();
   const { loading: myLoading, error: myError, data: myData, refetch } = useQuery(QUERY_ME, {
     context: { headers: { Authorization: `Bearer ${authToken}` } },
@@ -27,6 +30,10 @@ const MyThreads = () => {
   if (myError) return <p>Error: {myError.message}</p>;
 
   const threads = myData?.me?.threads || [];
+
+  const toggleForm = () => {
+    setShowForm((prev) => !prev); 
+  };
 
   return (
     <div className="sidenav">
@@ -46,9 +53,26 @@ const MyThreads = () => {
               </Link>
             ))
           )}
+
+          <button
+            style={{
+              padding: '8px 12px',
+              backgroundColor: 'grey',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              marginBottom: '20px',
+            }}
+            onClick={toggleForm}
+          >
+            Add Thread +
+          </button>
+          <br />
+          {showForm && <AddThread />}
         </>
       ) : (
-        <p>You need to be logged in to view your threads. Please log in or sign up.</p>
+        <p>You need to be logged in to view or add threads. Please log in or sign up.</p>
       )}
     </div>
   );

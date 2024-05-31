@@ -62,25 +62,15 @@ const AddComment = ({ threadId }) => {
         {error && <div className="error-message">{error}</div>}
         {Auth.loggedIn() && (
           <>
-            <label htmlFor="author">Author:</label>
-            <input
-              type="text"
-              id="author"
-              name="author"
-              placeholder="Enter your name"
-              value={author}
-              onChange={handleChange}
-            />
-            <label htmlFor="text">Comment:</label>
             <input
               type="text"
               id="text"
               name="text"
-              placeholder="Enter your comment"
+              placeholder="Add a comment"
               value={text}
               onChange={handleChange}
             />
-            <button type="submit">Add Comment</button>
+            <button type="submit">Comment</button>
           </>
         )}
       </form>

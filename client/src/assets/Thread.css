@@ -1,113 +1,68 @@
-/* General styling for the thread container */
+/* Adjust text size and padding */
 .thread-container {
-  margin: 20px;
+  background-color: #1a1a1b;
+  color: #d7dadc;
   padding: 20px;
-  background-color: #111; /* Changed background color to white */
-  color: white; /* Changed text color to black */
-}
-
-/* Styling for individual comment cards */
-.comment-card {
-  margin-bottom: 15px;
-  padding: 15px;
-  border: 1px solid #000; /* Changed border color to black */
   border-radius: 8px;
-  background-color: #111; /* Changed background color to white */
-  color: white; /* Changed text color to black */
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 18px; 
 }
 
-/* Styling for nested comments */
-.nested-comment {
-  margin-left: 20px; /* Adjust margin to nest comments */
+.threadname {
+  text-align: center;
 }
 
-/* Styling for the comment author */
+.comment-card {
+  background-color: #272729;
+  color: #d7dadc;
+  padding: 15px; /* Increased padding */
+  border-radius: 6px;
+  margin-top: 20px; /* Increased margin */
+  font-size: 16px; /* Increase text size */
+}
+
 .comment-author {
   font-weight: bold;
-  margin-bottom: 5px;
 }
 
-/* Styling for the comment text */
 .comment-text {
-  margin-bottom: 10px;
+  margin-top: 10px; /* Increased margin */
+  margin-bottom: 20px;
 }
 
-/* Styling for the reply button */
+/* Adjust button styles */
 .reply-button {
-  margin-right: 10px;
-  padding: 5px 10px;
+  background-color: #333333; /* Darker grey background */
+  color: #ffffff;
   border: none;
-  border-radius: 5px;
-  background-color: #111; /* Changed background color to black */
-  color: #fff; /* Changed text color to white */
+  border-radius: 4px;
+  padding: 8px 12px; /* Smaller button size */
+  margin-right: 10px; /* Increased margin */
   cursor: pointer;
+  font-size: 14px; /* Smaller button text size */
 }
 
-/* Styling for the reply form container */
-.reply-form-container {
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  background-color: #111;
-  color: white; /* Changed text color to black */
+.reply-button:hover {
+  background-color: #555555; /* Darker grey on hover */
 }
 
-/* Styling for the reply input fields */
-.reply-input {
-  display: block;
-  width: calc(100% - 22px);
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* Styling for the reply submit button */
-.reply-submit-button {
-  padding: 7px 15px;
-  border: none;
-  border-radius: 5px;
-  background-color: #000; /* Changed background color to black */
-  color: #fff; /* Changed text color to white */
-  cursor: pointer;
-}
-
-/* Styling for individual reply cards */
+/* Adjust reply card width and styling */
 .reply-card {
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid #000; /* Changed border color to black */
+  background-color: #3a3a3b;
+  color: #d7dadc;
+  padding: 10px; 
   border-radius: 8px;
-  background-color: #111; /* Changed background color to white */
-  color: white; /* Changed text color to black */
+  margin-top: 10px; 
+  width: 50%; 
+  font-size: 16px; 
+  margin-left: 20px; 
 }
 
-/* Styling for the reply author */
 .reply-author {
   font-weight: bold;
-  margin-bottom: 5px;
 }
 
-/* Styling for the reply text */
 .reply-text {
-  margin-bottom: 5px;
-}
-
-/* Success and error messages */
-.success-message, .error-message {
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.success-message {
-  color: #fff; /* Changed text color to white */
-  background-color: #000; /* Changed background color to black */
-  border-color: #000; /* Changed border color to black */
-}
-
-.error-message {
-  color: #fff; /* Changed text color to white */
-  background-color: #ff0000; /* Changed background color to red */
-  border-color: #ff0000; /* Changed border color to red */
+  margin-top: 5px;
 }

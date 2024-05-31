@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADDTHREAD } from '../../utils/mutations';
 import { QUERY_THREAD_BY_ID, QUERY_ALLTHREADS } from '../../utils/queries';
+
 import Auth from '../../utils/auth';
+import '../assets/addThread.css'
 
 const AddThread = () => {
   const [name, setName] = useState('');
@@ -71,7 +73,7 @@ const AddThread = () => {
               onChange={handleChange}
             />
             <label htmlFor="description">description:</label>
-            <input
+            <textarea
               type="text"
               id="description"
               name="description"
@@ -79,7 +81,7 @@ const AddThread = () => {
               value={description}
               onChange={handleChange}
             />
-            <button type="submit">Add Thread</button>
+            <button type="submit">Submit</button>
           </>
         ) : (
           <p>You need to be logged in to add a note. Please log in or sign up.</p>

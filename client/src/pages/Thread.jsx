@@ -40,7 +40,7 @@ const ThreadDetails = ({ authToken }) => {
 
   return (
     <div className="thread-container">
-      <h3>{thread.name}</h3>
+      <h2 className='threadname'>{thread.name}</h2>
       <p>{thread.description}</p>
       <AddComment threadId={thread._id} />
       {thread.comments.map((comment) => (
@@ -68,7 +68,7 @@ const ThreadDetails = ({ authToken }) => {
           </button>
           {showReplies[comment._id] && comment.replies.length > 0 && (
             <div className="mt-3 ml-3">
-              <h5>Replies:</h5>
+              <h4>Replies:</h4>
               {comment.replies.map((reply) => (
                 <div key={reply._id} className="reply-card">
                   <div className="reply-author">{reply.replyAuthor}</div>
