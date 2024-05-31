@@ -42,6 +42,7 @@ const ThreadDetails = ({ authToken }) => {
     <div className="thread-container">
       <h2 className='threadname'>{thread.name}</h2>
       <p className='threadname'>{thread.description}</p>
+      <AddComment threadId={thread._id} />
       {thread.comments.map((comment) => (
         <div key={comment._id} className="comment-card">
           <div className="comment-author">{comment.author}</div>
