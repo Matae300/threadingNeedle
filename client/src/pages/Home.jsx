@@ -31,7 +31,22 @@ const Home = ({ authToken }) => {
       <h3>Threads</h3>
       
 
-      <button onClick={toggleForm}>Add Thread +</button>
+      <button
+  style={{
+    padding: '8px 12px',
+    backgroundColor: 'grey',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    paddingBottom: '10px',
+    marginBottom: '20px',
+  }}
+  onClick={toggleForm}
+>
+  Add Thread +
+</button>
+      <br/>
       {showForm && <AddThread />} 
 
       {threadData.allThreads.map((thread) => (
