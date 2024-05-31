@@ -14,5 +14,5 @@ GraphQL API: Streamlined API queries and mutations with GraphQL.
 ## Credits 
 Mathues Almeida
 
-License
+## License
 This project is licensed under the MIT License.
