@@ -138,6 +138,7 @@ const ThreadDetails = ({ authToken }) => {
               {comment.replies.map((reply) => (
                 <div key={reply._id} className="reply-card">
                   <div className="reply-author">{reply.replyAuthor}</div>
+                  <div className="comment-author">@ {comment.author}</div>
                   <div className="reply-text">{reply.replyText}</div>
                   <button className="reply-button" onClick={() => handleLikeReply(reply._id, comment._id)}>👍🏻 {reply.likes}</button>
                 </div>

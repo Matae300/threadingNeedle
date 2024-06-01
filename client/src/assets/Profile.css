@@ -5,7 +5,7 @@
 }
 
 .thread-div {
-  display: flex; /* Change to flex */
+  display: flex; 
   flex-direction: column;
   align-items: center;
   border: 1px solid #ddd;
@@ -13,32 +13,41 @@
   background-color: #ffffffaf;
   padding: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease
+}
+
+.thread-div p {
+  font-weight: bold;
 }
 
 .thread-div:hover {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Styling for the card title */
+
 .thread-div-title {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-/* Styling for the card content */
-.thread-div-content {
-  font-size: 16px;
-}
 
 .comment-div {
-  display: flex; 
+  display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Increase border-radius for a rounder look */
+  padding: 3px; /* Increase padding for a bigger size */
+  background-color: #f2f2f2; /* Change background color */
+  color: #000000; /* Change text color */
   margin-bottom: 10px;
+  width: 100%; /* Ensure the comment div spans the entire width */
+  font-weight: bold;
 }
 
-.reply-div {
-  margin-left: 20px;
+.comment-div p {
+  margin: 5px 0;
+  font-size: 18px;
 }
