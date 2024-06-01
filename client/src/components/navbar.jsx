@@ -24,7 +24,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-        🧵 ThreadingNeedle
+          🧵 ThreadingNeedle
         </Link>
         <ul className="nav-menu">
           <li className="nav-item">
@@ -32,22 +32,26 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/profile" className="nav-links">
-              Profile
-            </Link>
-          </li>
-          <li className="nav-item">
-            <div className="nav-links dropdown-toggle" onClick={toggleDropdown}>
-              Signup/Login
-            </div>
-            {isDropdownOpen && (
-              <div className="dropdown-menu">
-                <Signup />
-                <Login />
+          {!Auth.loggedIn() && (
+            <li className="nav-item">
+              <div className="nav-links dropdown-toggle" onClick={toggleDropdown}>
+                Signup/Login
               </div>
-            )}
-          </li>
+              {isDropdownOpen && (
+                <div className="dropdown-menu">
+                  <Signup />
+                  <Login />
+                </div>
+              )}
+            </li>
+          )}
+          {Auth.loggedIn() && (
+            <li className="nav-item">
+              <Link to="/profile" className="nav-links">
+                Profile
+              </Link>
+            </li>
+          )}
           {Auth.loggedIn() && (
             <li className="nav-item">
               <button className="nav-links btn-light" onClick={logout}>

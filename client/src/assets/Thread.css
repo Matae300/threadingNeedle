@@ -19,7 +19,7 @@
   padding: 15px; /* Increased padding */
   border-radius: 6px;
   margin-top: 20px; /* Increased margin */
-  font-size: 16px; /* Increase text size */
+  font-size: 18px; /* Increase text size */
 }
 
 .comment-author {
@@ -55,7 +55,7 @@
   border-radius: 8px;
   margin-top: 10px; 
   width: 50%; 
-  font-size: 16px; 
+  font-size: 18px; 
   margin-left: 20px; 
 }
 

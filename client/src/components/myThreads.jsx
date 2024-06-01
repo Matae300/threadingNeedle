@@ -34,8 +34,8 @@ const MyThreads = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      refetch(); // Refetch data every second
-    }, 1000); // 1000 milliseconds = 1 second
+      refetch(); 
+    }, 500); 
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, [refetch]);

@@ -5,6 +5,7 @@ import { QUERY_THREAD_BY_ID, QUERY_ME } from '../../utils/queries';
 import { ADDTHREADTOUSER, ADDLIKEREPLY, ADDLIKECOMMENT } from '../../utils/mutations';
 import AddComment from '../components/addComment'; 
 import AddReply from '../components/addReply'; 
+import Auth from '../../utils/auth'
 
 import '../assets/Thread.css';
 
@@ -22,6 +23,7 @@ const ThreadDetails = ({ authToken }) => {
 
   const [showReplyForm, setShowReplyForm] = useState({});
   const [showReplies, setShowReplies] = useState({});
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [addThreadToUser] = useMutation(ADDTHREADTOUSER);
   const [addLikeComment] = useMutation(ADDLIKECOMMENT);
@@ -58,6 +60,12 @@ const ThreadDetails = ({ authToken }) => {
   };
 
   const handleLikeComment = async (commentId) => {
+    if (!Auth.loggedIn()) {
+      setErrorMessage('You must be signed in to like a comment.');
+      setTimeout(() => setErrorMessage(''), 5000);
+      return; 
+    }
+
     try {
       await addLikeComment({ variables: { userId, threadId: id, commentId } });
       console.log('Comment liked successfully');
@@ -68,6 +76,12 @@ const ThreadDetails = ({ authToken }) => {
   };
 
   const handleLikeReply = async (replyId, commentId) => {
+    if (!Auth.loggedIn()) {
+      setErrorMessage('You must be signed in to like a reply.');
+      setTimeout(() => setErrorMessage(''), 5000);
+      return;
+    }
+
     try {
       await addLikeReply({ variables: { userId, threadId: id, commentId, replyId } });
       console.log('Reply liked successfully');
@@ -79,12 +93,16 @@ const ThreadDetails = ({ authToken }) => {
 
   if (!thread) return <p>No thread found</p>;
 
+  const threadAdded = userData?.me?.threads?.find((thread) => thread._id === id);
+
   return (
     <div className="thread-container">
       {userId && <button className='add-thread-button' onClick={handleAddThread}>Add Thread</button>}
+      {userId && threadAdded && <p>You have already added this thread.</p>}
       <h2 className='threadname'>{thread.name}</h2>
       <p className='threadname'>{thread.description}</p>
       <AddComment threadId={thread._id} />
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       {thread.comments.map((comment) => (
         <div key={comment._id} className="comment-card">
           <div className="comment-author">{comment.author}</div>
