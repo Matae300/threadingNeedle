@@ -5,7 +5,7 @@ import { QUERY_THREAD_BY_ID, QUERY_ALLTHREADS, QUERY_ME } from '../../utils/quer
 import Auth from '../../utils/auth';
 
 
-const AddReply = ({ commentId, threadId, onReplyAdded }) => {
+const AddReply = ({ commentId, replyId, threadId, onReplyAdded }) => {
   const [replyText, setReplyText] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -32,6 +32,7 @@ const AddReply = ({ commentId, threadId, onReplyAdded }) => {
       await addReply({
         variables: {
           commentId,
+          replyId,
           replyAuthor: userData?.me?.username,
           replyText,
         },

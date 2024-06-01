@@ -1,5 +1,43 @@
 const { Schema, model } = require('mongoose');
-const { type } = require('os');
+
+const replySchema = new Schema({
+  replyAuthor: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  replyText: {
+    type: String,
+    required: true,
+    minlength: 1,
+    maxlength: 280,
+    trim: true,
+  },
+  likes: {
+    type: Number,
+    default: 0,
+  },
+});
+
+const commentSchema = new Schema({
+  author: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  text: {
+    type: String,
+    required: true,
+    minlength: 1,
+    maxlength: 280,
+    trim: true,
+  },
+  likes: {
+    type: Number,
+    default: 0,
+  },
+  replies: [replySchema],
+});
 
 const threadSchema = new Schema({
   name: {
@@ -16,42 +54,7 @@ const threadSchema = new Schema({
     unique: true,
     trim: true,
   },
-  comments: [
-    {
-      author: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-      text: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 280,
-        trim: true,
-      },
-      likes: {
-        type: Number,
-        default: 0,
-      },
-      replies: [
-        {
-          replyAuthor: {
-            type: String,
-            required: true,
-          },
-          replyText: {
-            type: String,
-            required: true,
-          },
-          likes: {
-            type: Number,
-            default: 0,
-          }
-        }
-      ],
-    }
-  ],
+  comments: [commentSchema],
 });
 
 const Thread = model('Thread', threadSchema);

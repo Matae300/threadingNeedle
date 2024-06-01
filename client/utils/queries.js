@@ -68,4 +68,3 @@ query ThreadById($id: ID!) {
   }
 }
 `;
-
