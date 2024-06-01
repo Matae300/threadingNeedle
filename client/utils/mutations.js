@@ -9,6 +9,41 @@ mutation AddThread($name: String!, $description: String!) {
   }
 }`;
 
+export const ADDTHREADTOUSER = gql`
+mutation AddThreadToUser($userId: ID!, $threadId: ID!) {
+  addThreadToUser(userId: $userId, threadId: $threadId) {
+    _id
+    name
+    description
+  }
+}`;
+
+export const REMOVETHREADFROMUSER = gql`
+mutation RemoveThreadFromUser($threadId: ID!) {
+  removeThreadFromUser(threadId: $threadId) {
+    _id
+    name
+    description
+
+  }
+}`;
+
+export const ADDLIKECOMMENT = gql`
+mutation AddLikeToComment($threadId: ID!, $commentId: ID!) {
+  addLikeToComment(threadId: $threadId, commentId: $commentId) {
+    _id
+    likes
+  }
+}`;
+
+export const ADDLIKEREPLY = gql`
+mutation AddLikeToReply($threadId: ID!, $commentId: ID!, $replyId: ID!) {
+  addLikeToReply(threadId: $threadId, commentId: $commentId, replyId: $replyId) {
+    _id
+    likes
+  }
+}`;
+
 export const ADDCOMMENT = gql`
 mutation AddComment($threadId: ID!, $author: String!, $text: String!) {
   addComment(threadId: $threadId, author: $author, text: $text) {

@@ -106,3 +106,17 @@
 .add-button:hover {
   background-color: #ced3d740;
 }
+
+.add-thread-button {
+  padding: 10px 15px;
+  background-color: #6e788032;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.add-thread-button:hover {
+  background-color: #ced3d740;
+}

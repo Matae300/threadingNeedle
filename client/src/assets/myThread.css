@@ -23,8 +23,26 @@
   color: #e8e8ebda;
 }
 
+.mythread {
+  display: flex; 
+  align-items: center; 
+}
+
 .mythread p {
   font-weight: bold;
-  font-size: 18px;
-  margin: 0; 
+  font-size: 16px;
+  margin: 0;
+  margin-right: 1;
+  padding-right: 2px;
+}
+
+.remove-thread-button {
+  background-color: #ffffff0c;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.remove-thread-button:hover {
+  transform: scale(1.1);
+  background-color: #ffffff1a;
 }

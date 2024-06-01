@@ -39,7 +39,6 @@ const Signup = () => {
   };
 
   return (
-
       <div className="signup-container">
         <div className="">
           <h3 className='signup-text'>CREATE AN ACCOUNT</h3>

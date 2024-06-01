@@ -52,7 +52,7 @@ const Login = (props) => {
           <div className="">
             {data ? (
               <p>
-                Success! You are being redirected to the your garden.
+                Success! You are being redirected to the your home.
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
@@ -77,7 +77,7 @@ const Login = (props) => {
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
-                  Log-In
+                  Login
                 </button>
               </form>
             )}

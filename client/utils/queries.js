@@ -15,10 +15,12 @@ query Me {
         _id
         author
         text
+        likes
         replies {
           _id
           replyAuthor
           replyText
+          likes
         }
       }
     }
@@ -55,10 +57,12 @@ query ThreadById($id: ID!) {
       _id
       author
       text
+      likes
       replies {
         _id
         replyAuthor
         replyText
+        likes
       }
     }
   }

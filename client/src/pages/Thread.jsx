@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-
-import { QUERY_THREAD_BY_ID } from '../../utils/queries';
-
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_THREAD_BY_ID, QUERY_ME } from '../../utils/queries';
+import { ADDTHREADTOUSER, ADDLIKEREPLY, ADDLIKECOMMENT } from '../../utils/mutations';
 import AddComment from '../components/addComment'; 
 import AddReply from '../components/addReply'; 
 
@@ -11,18 +10,38 @@ import '../assets/Thread.css';
 
 const ThreadDetails = ({ authToken }) => {
   const { id } = useParams();
+
   const { loading, error, data } = useQuery(QUERY_THREAD_BY_ID, {
     variables: { id },
+    context: { headers: { Authorization: `Bearer ${authToken}` } },
+  });
+
+  const { loading: userLoading, error: userError, data: userData } = useQuery(QUERY_ME, {
     context: { headers: { Authorization: `Bearer ${authToken}` } },
   });
 
   const [showReplyForm, setShowReplyForm] = useState({});
   const [showReplies, setShowReplies] = useState({});
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  const [addThreadToUser] = useMutation(ADDTHREADTOUSER);
+  const [addLikeComment] = useMutation(ADDLIKECOMMENT);
+  const [addLikeReply] = useMutation(ADDLIKEREPLY);
 
-  const thread = data.ThreadById;
+  if (loading || userLoading) return <p>Loading...</p>;
+  if (error || userError) return <p>Error: {error?.message || userError?.message}</p>;
+
+  const thread = data?.ThreadById;
+  const userId = userData?.me?._id;
+
+  const handleAddThread = async () => {
+    try {
+      await addThreadToUser({ variables: { userId, threadId: id } });
+      console.log('Thread added successfully');
+    } catch (err) {
+      console.error(err);
+      console.log('Error adding thread: ' + err.message);
+    }
+  };
 
   const handleReplyClick = (commentId) => {
     setShowReplyForm((prevState) => ({
@@ -38,8 +57,31 @@ const ThreadDetails = ({ authToken }) => {
     }));
   };
 
+  const handleLikeComment = async (commentId) => {
+    try {
+      await addLikeComment({ variables: { userId, threadId: id, commentId } });
+      console.log('Comment liked successfully');
+    } catch (err) {
+      console.error(err);
+      console.log('Error liking comment: ' + err.message);
+    }
+  };
+
+  const handleLikeReply = async (replyId, commentId) => {
+    try {
+      await addLikeReply({ variables: { userId, threadId: id, commentId, replyId } });
+      console.log('Reply liked successfully');
+    } catch (err) {
+      console.error(err);
+      console.log('Error liking reply: ' + err.message);
+    }
+  };
+
+  if (!thread) return <p>No thread found</p>;
+
   return (
     <div className="thread-container">
+      {userId && <button className='add-thread-button' onClick={handleAddThread}>Add Thread</button>}
       <h2 className='threadname'>{thread.name}</h2>
       <p className='threadname'>{thread.description}</p>
       <AddComment threadId={thread._id} />
@@ -47,7 +89,7 @@ const ThreadDetails = ({ authToken }) => {
         <div key={comment._id} className="comment-card">
           <div className="comment-author">{comment.author}</div>
           <div className="comment-text">{comment.text}</div>
-          <button className="reply-button">Like</button>
+          <button className="reply-button" onClick={() => handleLikeComment(comment._id)}>👍🏻 {comment.likes}</button>
           <button className="reply-button" onClick={() => handleReplyClick(comment._id)}>
             {showReplyForm[comment._id] ? 'Cancel Reply' : 'Add Reply'}
           </button>
@@ -79,6 +121,7 @@ const ThreadDetails = ({ authToken }) => {
                 <div key={reply._id} className="reply-card">
                   <div className="reply-author">{reply.replyAuthor}</div>
                   <div className="reply-text">{reply.replyText}</div>
+                  <button className="reply-button" onClick={() => handleLikeReply(reply._id, comment._id)}>👍🏻 {reply.likes}</button>
                 </div>
               ))}
             </div>

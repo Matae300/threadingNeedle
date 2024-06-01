@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { useEffect, useState } from "react";
 
 import { QUERY_ME } from '../../utils/queries';
+import { REMOVETHREADFROMUSER } from '../../utils/mutations';
 
 import AddThread from './addThread';
 import Auth from '../../utils/auth';
@@ -13,10 +14,23 @@ import '../assets/myThread.css';
 const MyThreads = () => {
   const [showForm, setShowForm] = useState(false);
 
+  const [removeThread] = useMutation(REMOVETHREADFROMUSER);
+
   const authToken = Auth.getToken();
   const { loading: myLoading, error: myError, data: myData, refetch } = useQuery(QUERY_ME, {
     context: { headers: { Authorization: `Bearer ${authToken}` } },
   });
+
+  const handleRemoveThread = async (threadId) => {
+    try {
+      await removeThread({ variables: { threadId } });
+      console.log('Thread removed successfully');
+    } catch (err) {
+      console.error(err);
+      console.log('Error removing thread: ' + err.message);
+    }
+  };
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -47,6 +61,7 @@ const MyThreads = () => {
               <Link to={`/thread/${thread._id}`} key={thread._id}>
                 <div className="card">
                   <div className="mythread">
+                    <p className='remove-thread-button' onClick={() => handleRemoveThread(thread._id)}>🗑️</p>
                     <p className="card-title">{thread.name}</p>
                   </div>
                 </div>
