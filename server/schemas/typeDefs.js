@@ -18,6 +18,7 @@ type Comment {
   _id: ID
   author: String
   text: String
+  likes: Int
   replies: [Reply]!
 }
 
@@ -25,6 +26,7 @@ type Reply {
   _id: ID
   replyAuthor: String
   replyText: String
+  likes: Int
 }
 
 type Auth {
@@ -47,8 +49,12 @@ type Mutation {
   addUser(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
   addThread(description: String!, name: String!): Thread
+  addThreadToUser(userId: ID!, threadId: ID!): Thread
   addComment(threadId: ID!, author: String!, text: String!): Comment
+  addLikeToComment(threadId: ID!, commentId: ID!): Comment
   addReply(commentId: ID!, replyAuthor: String!, replyText: String!): Reply
+  addLikeToReply(threadId: ID!, commentId: ID!, replyId: ID!): Reply
+  removeThreadFromUser(threadId: ID!): Thread
 }
 `;
 

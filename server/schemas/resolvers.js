@@ -86,6 +86,25 @@ const resolvers = {
       }
       throw new Error('You must be logged in to add a thread.');
     },
+    addThreadToUser: async (_, { userId, threadId }, context) => {
+      if (!context.user) throw new AuthenticationError('Not authenticated');
+    
+      const user = await User.findById(userId);
+      if (!user) throw new Error('User not found');
+    
+      const alreadyAdded = user.threads.some(pid => pid.equals(threadId));
+      if (alreadyAdded) {
+        throw new Error('Thread already added to the user');
+      }
+    
+      const thread = await Thread.findById(threadId);
+      if (!thread) throw new Error('Thread not found');
+    
+      user.threads.push(thread._id);
+      await user.save();
+    
+      return thread;
+    },
     addComment: async (parent, { threadId, author, text }, context) => {
       if (context.user) {
         const updatedThread = await Thread.findOneAndUpdate(
@@ -124,7 +143,59 @@ const resolvers = {
         throw new Error('You must be logged in to add a reply.');
       }
     },
-  },
+    addLikeToComment: async (_, { threadId, commentId }) => {
+      try {
+        const thread = await Thread.findById(threadId);
+        if (!thread) {
+          throw new Error("Thread not found");
+        }
+        const comment = thread.comments.id(commentId);
+        if (!comment) {
+          throw new Error("Comment not found");
+        }
+
+        comment.likes += 1;
+        await thread.save();
+        return comment;
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    addLikeToReply: async (_, { threadId, commentId, replyId }) => {
+      try {
+        const thread = await Thread.findById(threadId);
+        if (!thread) {
+          throw new Error("Thread not found");
+        }
+        const comment = thread.comments.id(commentId);
+        if (!comment) {
+          throw new Error("Comment not found");
+        }
+        const reply = comment.replies.id(replyId);
+        if (!reply) {
+          throw new Error("Reply not found");
+        }
+
+        reply.likes += 1;
+        await thread.save();
+        return reply;
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    removeThreadFromUser: async (parent, { threadId }, context) => {
+      if (context.user) {
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { threads: threadId } }
+        );
+
+        const thread = await Thread.findById(threadId);
+        return thread;
+      }
+      throw new AuthenticationError('You must be logged in to remove a thread.');
+    },
+  }
 };
 
 module.exports = resolvers;

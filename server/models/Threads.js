@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { type } = require('os');
 
 const threadSchema = new Schema({
   name: {
@@ -29,6 +30,10 @@ const threadSchema = new Schema({
         maxlength: 280,
         trim: true,
       },
+      likes: {
+        type: Number,
+        default: 0,
+      },
       replies: [
         {
           replyAuthor: {
@@ -39,6 +44,10 @@ const threadSchema = new Schema({
             type: String,
             required: true,
           },
+          likes: {
+            type: Number,
+            default: 0,
+          }
         }
       ],
     }
