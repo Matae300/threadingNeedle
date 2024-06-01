@@ -103,6 +103,7 @@ const ThreadDetails = ({ authToken }) => {
       <p className='threadname'>{thread.description}</p>
       <AddComment threadId={thread._id} />
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {thread.comments.length === 0 && <p className='threadname'>No comments yet</p>}
       {thread.comments.map((comment) => (
         <div key={comment._id} className="comment-card">
           <div className="comment-author">{comment.author}</div>
@@ -155,34 +156,6 @@ const ThreadDetails = ({ authToken }) => {
                           [reply._id]: false,
                         }))}
                       />
-                    </div>
-                  )}
-                  {reply.replyToReply && (
-                    <div className="mt-3 ml-3">
-                      {reply.replyToReply.map((subReply) => (
-                        <div key={subReply._id} className="reply-card ml-3">
-                          <div className="reply-author">{subReply.replyAuthor}</div>
-                          <div className="comment-author">@ {comment.author}</div>
-                          <div className="reply-text">{subReply.replyText}</div>
-                          <button className="reply-button" onClick={() => handleLikeReply(subReply._id, comment._id)}>👍🏻 {subReply.likes}</button>
-                          <button className="reply-button" onClick={() => handleReplyClick(subReply._id)}>
-                            {showReplyForm[subReply._id] ? 'Cancel Reply' : 'Add Reply'}
-                          </button>
-                          {showReplyForm[subReply._id] && (
-                            <div className="reply-form-container">
-                              <AddReply
-                                commentId={comment._id}
-                                replyId={subReply._id}
-                                threadId={thread._id}
-                                onReplyAdded={() => setShowReplyForm((prevState) => ({
-                                  ...prevState,
-                                  [subReply._id]: false,
-                                }))}
-                              />
-                            </div>
-                          )}
-                        </div>
-                      ))}
                     </div>
                   )}
                 </div>
