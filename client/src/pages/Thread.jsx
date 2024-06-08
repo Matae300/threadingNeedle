@@ -162,6 +162,9 @@ const ThreadDetails = ({ authToken }) => {
               ))}
             </div>
           )}
+          {showReplies[comment._id] && comment.replies.length === 0 && (
+            <p>No replies yet</p>
+          )}
         </div>
       ))}
     </div>

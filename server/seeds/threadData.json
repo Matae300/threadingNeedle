@@ -1,0 +1,178 @@
+[
+  {
+    "name": "Introduction to React",
+    "description": "Learn the basics of React.js",
+    "comments": [
+      {
+        "author": "John Doe",
+        "text": "Very helpful tutorial!",
+        "likes": 15,
+        "replies": [
+          {
+            "replyAuthor": "Jane Smith",
+            "replyText": "I agree, I learned a lot!",
+            "likes": 8
+          },
+          {
+            "replyAuthor": "Mike Johnson",
+            "replyText": "I found the explanations clear and easy to follow.",
+            "likes": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "JavaScript Fundamentals",
+    "description": "Fundamental concepts of JavaScript programming",
+    "comments": [
+      {
+        "author": "Emily Brown",
+        "text": "This video clarified some concepts I was struggling with. Thank you!",
+        "likes": 12,
+        "replies": []
+      }
+    ]
+  },
+  {
+    "name": "CSS Styling Techniques",
+    "description": "Advanced CSS styling methods",
+    "comments": []
+  },
+  {
+    "name": "Cooking Techniques",
+    "description": "Mastering Italian Cuisine",
+    "comments": [
+      {
+        "author": "Mark Wilson",
+        "text": "I'm excited to try this recipe!",
+        "likes": 2,
+        "replies": [
+          {
+            "replyAuthor": "Anna Martinez",
+            "replyText": "Let me know how it turns out!",
+            "likes": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Fitness and Wellness",
+    "description": "Yoga for Beginners",
+    "comments": [
+      {
+        "author": "Sophie Clark",
+        "text": "These exercises really helped with my flexibility.",
+        "likes": 6,
+        "replies": []
+      },
+      {
+        "author": "David Thompson",
+        "text": "I've been doing this routine for a week now, and I already feel more energetic!",
+        "likes": 4,
+        "replies": []
+      }
+    ]
+  },
+  {
+    "name": "Travel and Exploration",
+    "description": "Exploring the Grand Canyon",
+    "comments": []
+  },
+  {
+    "name": "NBA Playoffs Analysis",
+    "description": "Insights into the current NBA playoffs matchups",
+    "comments": [
+      {
+        "author": "LeBronFan23",
+        "text": "LeBron's performance was outstanding in the last game!",
+        "likes": 25,
+        "replies": []
+      },
+      {
+        "author": "BasketballGuru",
+        "text": "I think the Bucks have a strong chance of winning it all this year.",
+        "likes": 18,
+        "replies": [
+          {
+            "replyAuthor": "KobeFan24",
+            "replyText": "As a Lakers fan, I'm rooting for LeBron, but the Bucks are indeed a formidable team.",
+            "likes": 12
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Best Video Games of 2023",
+    "description": "A roundup of the top-rated video games from last year",
+    "comments": [
+      {
+        "author": "GamerX",
+        "text": "I loved playing Cyberpunk 2077!",
+        "likes": 35,
+        "replies": [
+          {
+            "replyAuthor": "RetroGamer89",
+            "replyText": "I'm more into retro games, but Cyberpunk was a visually stunning experience.",
+            "likes": 22
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Movie Reviews: Summer Blockbusters",
+    "description": "Critiques and discussions on the latest blockbuster movies",
+    "comments": [
+      {
+        "author": "FilmBuff23",
+        "text": "The special effects in the new Avengers movie were mind-blowing!",
+        "likes": 40,
+        "replies": []
+      },
+      {
+        "author": "CinemaLover",
+        "text": "I'm looking forward to the next James Bond film. It's always a thrilling experience.",
+        "likes": 15,
+        "replies": []
+      }
+    ]
+  },
+  {
+    "name": "NBA Finals Predictions",
+    "description": "Predicting the winners of the NBA finals",
+    "comments": [
+      {
+        "author": "HoopsEnthusiast",
+        "text": "I think the Suns have a good chance of taking the title this year.",
+        "likes": 30,
+        "replies": [
+          {
+            "replyAuthor": "BasketballAnalyst",
+            "replyText": "The Suns' teamwork and strong defense might just lead them to victory.",
+            "likes": 18
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Latest Video Game Releases",
+    "description": "Exploring the newest video game releases across platforms",
+    "comments": []
+  },
+  {
+    "name": "Upcoming Movies 2024",
+    "description": "Anticipating the most awaited movies of the year",
+    "comments": [
+      {
+        "author": "MovieBuff99",
+        "text": "The new Spider-Man movie trailer gave me chills! Can't wait to see it.",
+        "likes": 55,
+        "replies": []
+      }
+    ]
+  }
+]

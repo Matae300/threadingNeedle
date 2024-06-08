@@ -24,7 +24,6 @@ mutation RemoveThreadFromUser($threadId: ID!) {
     _id
     name
     description
-
   }
 }`;
 
