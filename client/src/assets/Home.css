@@ -1,30 +1,61 @@
-/* Styling for the card container */
-.card-container {
-  gap: 20px;
+/* Home.css */
+
+.tilesContainer {
+  margin-left: 300px;
+  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  padding: 20px;
 }
 
-/* Styling for individual card */
-.card {
-  border: 1px solid #ddd;
+.tilesWrap {
+  background-color: #fff;
   border-radius: 8px;
-  background-color: #ffffffaf;
-  padding: 10px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 }
 
-.card:hover {
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+.tilesWrap:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Styling for the card title */
-.card-title {
-  font-size: 18px;
+.tilesWrap ul {
+  list-style-type: none;
+  padding: 10px;
+}
+
+.tilesWrap li {
+  margin-bottom: 10px;
+}
+
+.tilesWrap h2 {
+  font-size: 24px;
   font-weight: bold;
+  color: #333;
   margin-bottom: 5px;
 }
 
-/* Styling for the card content */
-.card-content {
-  font-size: 16px;
+.tilesWrap h3 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.tilesWrap button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tilesWrap button:hover {
+  background-color: #0056b3;
+}
+
+.tilesWrap button:focus {
+  outline: none;
 }

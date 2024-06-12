@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import Signup from './Signup';
 import Login from './Login';
 import Auth from '../../utils/auth';
-
 import '../assets/navBar.css';
 
 const Navbar = () => {
@@ -12,6 +10,7 @@ const Navbar = () => {
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
+    document.querySelector('.dropdown-menu').classList.toggle('active');
   };
 
   const logout = (event) => {

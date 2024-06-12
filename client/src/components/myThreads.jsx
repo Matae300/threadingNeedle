@@ -77,6 +77,7 @@ const MyThreads = () => {
               border: 'none',
               borderRadius: '4px',
               cursor: 'pointer',
+              marginTop: '10px',
               marginBottom: '20px',
             }}
             onClick={toggleForm}

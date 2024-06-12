@@ -1,82 +1,48 @@
+/* addThread.css */
+
 .addThread-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
   padding: 20px;
-  margin: 20px auto;
-  background-color: #111;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 90%; 
-  border: 1px solid #cccccc4a;
+  background-color: #f8f9fa;
+  border-radius: 8px;
 }
 
 .addThread-label {
-  margin-bottom: 10px;
+  display: block;
+  margin-bottom: 5px;
   font-weight: bold;
-  font-size: 14px;
-  color: #ccc;
-  align-self: flex-start;
-}
-
-.addThread-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #333;
-  border-radius: 4px;
-  font-size: 14px;
-  color: white;
-  background-color: #333;
 }
 
 .addThread-input,
 .addThread-textarea {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #333;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 14px;
-  color: white;
-  background-color: #333;
-}
-
-.addThread-textarea {
-  height: 150px; 
-  resize: vertical; 
+  box-sizing: border-box;
 }
 
 .addThread-button {
-  padding: 10px 15px;
-  background-color: #6e788032;
-  color: #ffffff;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
 }
 
 .addThread-button:hover {
-  background-color: #005999ac;
-}
-
-.success-message, .addThread .error-message {
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  text-align: center;
-  width: 100%;
+  background-color: #0056b3;
 }
 
 .success-message {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  margin-bottom: 10px;
+  color: #28a745;
 }
 
 .error-message {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+  margin-bottom: 10px;
+  color: #dc3545;
 }

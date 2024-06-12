@@ -1,122 +1,79 @@
-/* Adjust text size and padding */
+
 .thread-container {
-  background-color: #1a1a1b;
-  color: #d7dadc;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  text-align: left;
-  font-size: 18px; 
+  margin-left: 300px;
+  width: 60%;
+  margin-top: 30px;
 }
 
-.threadname {
-  text-align: center;
+.thread-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.thread-description {
+  margin-bottom: 20px;
 }
 
 .comment-card {
-  background-color: #272729;
-  color: #d7dadc;
-  padding: 15px; /* Increased padding */
-  border-radius: 6px;
-  margin-top: 20px; /* Increased margin */
-  font-size: 18px; /* Increase text size */
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 20px;
 }
 
 .comment-author {
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .comment-text {
-  margin-top: 10px; /* Increased margin */
-  margin-bottom: 20px;
+  margin-top: 5px;
 }
 
-/* Adjust button styles */
+.like-button,
 .reply-button {
-  background-color: #333333; /* Darker grey background */
-  color: #ffffff;
+  margin-right: 10px;
+  padding: 5px 10px;
   border: none;
   border-radius: 4px;
-  padding: 8px 12px; /* Smaller button size */
-  margin-right: 10px; /* Increased margin */
   cursor: pointer;
-  font-size: 14px; /* Smaller button text size */
 }
 
+.like-button:hover,
 .reply-button:hover {
-  background-color: #555555; /* Darker grey on hover */
+  background-color: #e0e0e0;
 }
 
-/* Adjust reply card width and styling */
+.replies-section {
+  margin-top: 10px;
+}
+
+.reply-form-container {
+  margin-top: 10px;
+}
+
+.replies-container {
+  margin-top: 10px;
+}
+
 .reply-card {
-  background-color: #3a3a3b;
-  color: #d7dadc;
-  padding: 10px; 
+  background-color: #f0f0f0;
   border-radius: 8px;
-  margin-top: 10px; 
-  width: 50%; 
-  font-size: 18px; 
-  margin-left: 20px; 
+  padding: 10px;
+  margin-top: 10px;
 }
 
 .reply-author {
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .reply-text {
   margin-top: 5px;
 }
 
-.add-input {
-  flex: 1; /* Take up remaining space */
-  min-width: 60%; /* Set maximum width for input */
-  padding: 10px;
-  margin-right: 2px;
-  margin-left: 16%;
-  border: 1px solid #333;
-  border-radius: 4px;
-  font-size: 14px;
-  color: white;
-  background-color: #333;
-}
-
-.reply-input {
-  flex: 1; /* Take up remaining space */
-  min-width: 300px; /* Set maximum width for input */
-  padding: 10px;
-  margin-top: 20px;
-  margin-right: 3px;
-  border: 1px solid #333;
-  border-radius: 4px;
-  font-size: 14px;
-  color: white;
-  background-color: #333;
-}
-
-.add-button {
-  padding: 10px 15px;
-  background-color: #6e788032;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.add-button:hover {
-  background-color: #ced3d740;
-}
-
-.add-thread-button {
-  padding: 10px 15px;
-  background-color: #6e788032;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.add-thread-button:hover {
-  background-color: #ced3d740;
+.error-message {
+  color: red;
+  margin-top: 10px;
 }
