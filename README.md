@@ -5,7 +5,7 @@ Threading Needle is a vibrant online platform that draws inspiration from Reddit
 
 ![screenshot](./client//src/assets/images/screenshot1.jpeg)
 ![screenshot](./client//src/assets/images/screenshot2.jpeg)
-![screenshot](./client//src/assets/images/screenshot3.jpeg)
+
 
 ![MongoDB Badge](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=fff&style=flat-square)![Express Badge](https://img.shields.io/badge/Express-000?logo=express&logoColor=fff&style=flat-square)![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat-square)![Node.js Badge](https://img.shields.io/badge/Node.js-393?logo=nodedotjs&logoColor=fff&style=flat-square)
 
