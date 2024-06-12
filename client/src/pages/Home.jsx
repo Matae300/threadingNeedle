@@ -15,14 +15,15 @@ const Home = ({ authToken }) => {
 
   return (
     <div className="tilesContainer">
+      <h1 className="title">Threads</h1>
       {threadData.allThreads.map((thread) => (
         <div className="tilesWrap" key={thread._id}>
-          <Link to={`/thread/${thread._id}`}>
-            <ul>
-              <li>
-                <h3>{thread.name}</h3>
-                <h3>{thread.description}</h3>
-                <button>See Thread</button>
+          <Link to={`/thread/${thread._id}`} className="tile-link">
+            <ul className="tile-list">
+              <li className="tile-item">
+                <h3 className="tile-name">{thread.name}</h3>
+                <p className="tile-description">{thread.description}</p>
+                <button className="tile-button">See Thread</button>
               </li>
             </ul>
           </Link>

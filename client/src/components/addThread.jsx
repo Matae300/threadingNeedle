@@ -63,7 +63,7 @@ const AddThread = () => {
         {error && <div className="error-message">{error}</div>}
         {Auth.loggedIn() ? (
           <>
-            <label className='addThread-label' htmlFor="name">name:</label>
+            <label className='addThread-label' htmlFor="name">Thread Name</label>
             <input className='addThread-input'
               type="text"
               id="name"
@@ -72,7 +72,7 @@ const AddThread = () => {
               value={name}
               onChange={handleChange}
             />
-            <label className='addThread-label' htmlFor="description">description:</label>
+            <label className='addThread-label' htmlFor="description">Description</label>
             <textarea className='addThread-textarea'
               type="text"
               id="description"

@@ -1,48 +1,51 @@
-/* addThread.css */
-
 .addThread-form {
-  max-width: 600px;
-  margin: 0 auto;
+  margin: 20px 0;
   padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
+  border-radius: 5px;
+  margin-bottom: 150px;
 }
 
 .addThread-label {
+  margin-bottom: 10px;
   display: block;
-  margin-bottom: 5px;
   font-weight: bold;
 }
 
 .addThread-input,
-.addThread-textarea {
+.addThread-textarea,
+.addThread-button {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
   box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+.addThread-textarea {
+  resize: vertical; /* Allow vertical resizing of textarea */
+  padding-bottom: 100px;
 }
 
 .addThread-button {
-  padding: 8px 16px;
-  background-color: #007bff;
+  background-color: #0048bdb6;
   color: #fff;
-  border: none;
-  border-radius: 4px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .addThread-button:hover {
-  background-color: #0056b3;
+  background-color: #0048bd8a;
 }
 
 .success-message {
-  margin-bottom: 10px;
-  color: #28a745;
+  margin: 10px 0;
+  color: green;
 }
 
 .error-message {
-  margin-bottom: 10px;
-  color: #dc3545;
+  margin: 10px 0;
+  color: red;
 }

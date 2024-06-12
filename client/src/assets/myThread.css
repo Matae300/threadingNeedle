@@ -1,16 +1,18 @@
-/* myThread.css */
 
 .sidenav {
-  width: 250px;
-  height: 100%;
+  width: 220px;
+  height: 100vh;
   position: fixed;
-  top: 50;
+  top: 80px;
   left: 0;
   background-color: #f4f4f4;
   padding-top: 20px;
   overflow: auto;
-  background-image: linear-gradient(2000deg ,#ffffff, #0048bdb6);
+  background-image: linear-gradient(2000deg ,#ffff, #0048bdb6);
+}
 
+.sidenav a {
+  text-decoration: none;
 }
 
 .sidenav h3 {
@@ -19,11 +21,10 @@
 }
 
 .card {
-  background-color: #fff;
+  background-color: transparent;
   margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-top: 0px;
+  padding-bottom: 7px;
   transition: box-shadow 0.3s ease;
 }
 
@@ -43,9 +44,6 @@
   transition: color 0.3s ease;
 }
 
-.remove-thread-button:hover {
-  color: #f00;
-}
 
 .card-title {
   font-size: 18px;
@@ -66,10 +64,19 @@
   transition: background-color 0.3s ease;
 }
 
-.add-thread-button:hover {
-  background-color: #0056b3;
+.remove-thread-button {
+  cursor: pointer;
+  transition: font-size 0.3s ease;
 }
 
-.add-thread-button:focus {
-  outline: none;
+.remove-thread-button:hover {
+  font-size: 20px; /* Size when hovered */
+}
+
+.error-p {
+  padding: 0 10px;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

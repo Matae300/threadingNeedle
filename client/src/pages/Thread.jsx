@@ -97,7 +97,7 @@ const ThreadDetails = ({ authToken }) => {
 
   return (
     <div className="thread-container">
-      {userId && <button className='add-thread-button' onClick={handleAddThread}>Add Thread</button>}
+      {userId && <button className='add-button' onClick={handleAddThread}>Add Thread</button>}
       {userId && threadAdded && <p>You have already added this thread.</p>}
       <h2 className='threadname'>{thread.name}</h2>
       <p className='threadname'>{thread.description}</p>

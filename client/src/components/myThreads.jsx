@@ -61,7 +61,7 @@ const MyThreads = () => {
               <Link to={`/thread/${thread._id}`} key={thread._id}>
                 <div className="card">
                   <div className="mythread">
-                    <p className='remove-thread-button' onClick={() => handleRemoveThread(thread._id)}>🗑️</p>
+                    <p className='remove-thread-button' onClick={() => handleRemoveThread(thread._id)}>🚮</p>
                     <p className="card-title">{thread.name}</p>
                   </div>
                 </div>
@@ -72,7 +72,7 @@ const MyThreads = () => {
           <button
             style={{
               padding: '8px 12px',
-              backgroundColor: 'grey',
+              backgroundColor: '#0048bdb6',
               color: '#fff',
               border: 'none',
               borderRadius: '4px',
@@ -88,7 +88,7 @@ const MyThreads = () => {
           {showForm && <AddThread />}
         </>
       ) : (
-        <p>You need to be logged in to view or add threads. Please log in or sign up.</p>
+        <p className='error-p'>You need to be logged in to view or add threads. Please log in or sign up.</p>
       )}
     </div>
   );

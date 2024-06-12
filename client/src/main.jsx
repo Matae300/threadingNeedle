@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
 import Home from './pages/Home.jsx'
 import Thread from './pages/Thread.jsx'
-import Profile from './pages/Profie.jsx'
 
 const router = createBrowserRouter([
   {
@@ -19,11 +18,7 @@ const router = createBrowserRouter([
       {
         path: '/thread/:id',
         element: <Thread />
-      }, 
-      {
-        path: '/profile',
-        element: <Profile />
-      }, 
+      },
     ]
   }
 ])

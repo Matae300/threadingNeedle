@@ -46,13 +46,6 @@ const Navbar = () => {
           )}
           {Auth.loggedIn() && (
             <li className="nav-item">
-              <Link to="/profile" className="nav-links">
-                Profile
-              </Link>
-            </li>
-          )}
-          {Auth.loggedIn() && (
-            <li className="nav-item">
               <button className="nav-links btn-light" onClick={logout}>
                 Logout
               </button>
